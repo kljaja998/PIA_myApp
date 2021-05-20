@@ -1,0 +1,24 @@
+{{message}}
+<br/>
+<!--<button (click)='sortByAwards()'>Sort awards</button>
+<button (click)='sortByBirthday()'>Sort birthdays</button>-->
+<div *ngIf='allWriters.length!=0; else noWriters'>
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th class="clickable" (click)='sortByAwards()'>Award</th>
+            <th class="clickable" (click)='sortByBirthday()'>Birthday</th>
+        </tr>
+        <tr *ngFor='let writer of allWriters'
+        [class.moreawards] = 'writer.awards>=3'>
+            <td>{{writer.firstName}}</td>
+            <td>{{writer.lastName}}</td>
+            <td>{{writer.awards}}</td>
+            <td>{{writer.birthday.getFullYear()}}/{{writer.birthday.getMonth()+1}}</td>
+        </tr>
+    </table>
+</div>
+<ng-template #noWriters>
+    No writers
+</ng-template>
