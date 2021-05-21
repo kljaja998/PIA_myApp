@@ -26,10 +26,10 @@ export class WritersService {
   sortWritersByBirthday(): Writer[]{
     const allWriters = this.getAllWriters();
     return allWriters.sort((a, b) => {
-      if (a.birthday > b.birthday) {
+      if (b.birthday > a.birthday) {
         return 1;
       }
-      else if (a.birthday < b.birthday) {
+      else if (b.birthday < a.birthday) {
         return -1;
  }
       else {
