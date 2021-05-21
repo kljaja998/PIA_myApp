@@ -11,21 +11,36 @@ export class WritersComponent implements OnInit {
 
   constructor(private writerService: WritersService) { }
 
+  allWriters: Writer[];
+  birthdaySorted: boolean;
+  awardsSorted: boolean;
+  // ascendingSort: boolean;
+  message = 'All writers';
+
   ngOnInit(): void {
     this.allWriters = this.writerService.getAllWriters();
     this.birthdaySorted = false;
     this.awardsSorted = false;
+    // this.ascendingSort = false;
   }
 
-  allWriters: Writer[];
-  birthdaySorted: boolean;
-  awardsSorted: boolean;
-  message: string = "All writers";
+  sortByAwards(): void{
+    if (!this.awardsSorted ){
+      this.allWriters = this.writerService.sortWritersByAward();
+      this.birthdaySorted = false;
+      this.awardsSorted = true;
+    } else {
+      this.allWriters.reverse();
+    }
 
-  sortByAwards(){
-    this.allWriters = this.writerService.sortWritersByAward();
   }
-  sortByBirthday(){
-    this.allWriters = this.writerService.sortWritersByBirthday();      
+  sortByBirthday(): void{
+    if (!this.birthdaySorted){
+      this.allWriters = this.writerService.sortWritersByBirthday();
+      this.awardsSorted = false;
+      this.birthdaySorted = true;
+    } else {
+      this.allWriters.reverse();
+    }
   }
 }
